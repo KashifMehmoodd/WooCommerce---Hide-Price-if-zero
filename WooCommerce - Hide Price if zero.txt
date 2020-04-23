@@ -1,0 +1,25 @@
+ add_filter( 'woocommerce_get_price_html', 'hide_price', 99, 2 );
+function hide_price( $price, $product ) {
+    if ( 'pickup-katy-1' === $product->get_slug() ) {
+                $price = '';                
+        }
+          if ( 'pickup-katy-2' === $product->get_slug() ) {
+                $price = '';                
+        }
+          if ( 'pickup-brookshire' === $product->get_slug() ) {
+                $price = '';                
+        }
+    return $price;        
+}
+
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+
+function woo_remove_product_tabs( $tabs ) {
+
+    unset( $tabs['description'] );              // Remove the description tab
+    unset( $tabs['reviews'] );                         // Remove the reviews tab
+    unset( $tabs['additional_information'] );          // Remove the additional information tab
+
+    return $tabs;
+
+}
